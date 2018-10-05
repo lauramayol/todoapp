@@ -1,0 +1,12 @@
+<h1>To-do list Manager</h1>
+
+{% if all_todo_list %}
+    <ul>
+    {% for item in all_todo_list %}
+        <li><a href="{% url 'todolist:detail' item.id %}">{{ item.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Todo Lists are available.</p>
+{% endif %}
+<a href="{% url 'todolist:clear_all' %}"><input type="submit" value="Clear all Lists"></a>

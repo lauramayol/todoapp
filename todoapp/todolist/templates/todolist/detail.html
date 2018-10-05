@@ -1,0 +1,19 @@
+<h1>{{ todolist.title }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'todolist:complete' todolist.id %}" method="post">
+{% csrf_token %}
+{% for todoitem in todolist.todoitem_set.all %}
+{% if todoitem.is_completed == False %}
+    <input type="checkbox" name="todo" id="todoitem{{ forloop.counter }}" value="{{ todoitem.id }}">
+    <label for="todoitem{{ forloop.counter }}">{{ todoitem.name }}</label>:  <i>{{ todoitem.description }}</i><br>
+{% else %}
+    <input type="checkbox" name="todo" id="todoitem{{ forloop.counter }}" value="{{ todoitem.id }}" checked>
+        <label for="todoitem{{ forloop.counter }}">{{ todoitem.name }}</label>:  <i>{{ todoitem.description }}</i><br>
+{% endif %}
+{% endfor %}
+<input type="submit" value="Done">
+</form>
+
+<a href="{% url 'todolist:overview' %}"><input type="submit" value="Return to List"></a>
