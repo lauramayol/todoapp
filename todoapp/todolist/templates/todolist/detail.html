@@ -7,11 +7,11 @@
 {% for todoitem in todolist.todoitem_set.all %}
 {% if todoitem.is_completed == False %}
     <input type="checkbox" name="todo" id="todoitem{{ forloop.counter }}" value="{{ todoitem.id }}">
-    <label for="todoitem{{ forloop.counter }}">{{ todoitem.name }}</label>:  <i>{{ todoitem.description }}</i><br>
 {% else %}
     <input type="checkbox" name="todo" id="todoitem{{ forloop.counter }}" value="{{ todoitem.id }}" checked>
-        <label for="todoitem{{ forloop.counter }}">{{ todoitem.name }}</label>:  <i>{{ todoitem.description }}</i><br>
-{% endif %}
+ {% endif %}
+    <label for="todoitem{{ forloop.counter }}">{{ todoitem.name }}</label>:  <i>{{ todoitem.description }}</i><br>
+
 {% endfor %}
 <input type="submit" value="Done">
 </form>

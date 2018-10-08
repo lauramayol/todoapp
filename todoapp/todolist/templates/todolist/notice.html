@@ -1,3 +1,7 @@
 <h1>{{ todolist.title }}</h1>
+{% if todolist.completed == todolist.todoitem_set.count %}
+<p>Congratulation! You completed all items in the list.</p>
+{% else %}
 <p>You completed {{ todolist.completed }}  out of {{ todolist.todoitem_set.count }} items in the list.</p>
+ {% endif %}
 <a href="{% url 'todolist:overview' %}"><input type="submit" value="Return to List"></a>
